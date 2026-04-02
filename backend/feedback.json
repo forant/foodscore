@@ -8,5 +8,25 @@
     "interpretation": "A reasonable snack choice with some protein, but watch out for the added sugars.",
     "unreadable": false,
     "resultId": "784181C2-391B-41CB-9602-D102B68E3597"
+  },
+  {
+    "id": "3f17ca99-cf50-438d-8041-b04ada3fc311",
+    "timestamp": "2026-04-02T22:35:41.393531+00:00",
+    "feedback": "not_really",
+    "purpose": "meal",
+    "score": 5,
+    "interpretation": "A fine choice when combined with other foods, but not substantial enough as a standalone meal.",
+    "unreadable": false,
+    "resultId": "F99C9675-7442-4381-B616-398C9FE4906B"
+  },
+  {
+    "id": "b7a78c88-c9ac-46de-beec-dbd784211165",
+    "timestamp": "2026-04-02T22:36:25.243545+00:00",
+    "feedback": "yes",
+    "purpose": "snack",
+    "score": 7,
+    "interpretation": "A solid choice for a snack that offers a good balance and minimal sugar, though slightly limited in protein.",
+    "unreadable": false,
+    "resultId": "2B9391F3-718B-432A-8BC6-4E93B44BCF07"
   }
 ]

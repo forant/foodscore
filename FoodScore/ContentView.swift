@@ -474,7 +474,7 @@ struct ContentView: View {
 
     /// Step 1: Upload the image to /extract — returns nutrition data only, no score
     func extractFromImage(data: Data) async throws -> ExtractedNutrition {
-        let url = URL(string: "http://127.0.0.1:8000/extract")!
+        let url = URL(string: "\(APIConfig.baseURL)/extract")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
@@ -494,7 +494,7 @@ struct ContentView: View {
 
     /// Step 2: Send extracted nutrition + purpose to /score — returns the scored result
     func scoreNutrition(nutrition: ExtractedNutrition, purpose: FoodPurpose) async throws -> AnalysisResult {
-        let url = URL(string: "http://127.0.0.1:8000/score")!
+        let url = URL(string: "\(APIConfig.baseURL)/score")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -1,11 +1,15 @@
 import base64
 import json
+import logging
 import os
 import threading
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("foodscore")
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, Form, UploadFile
@@ -286,10 +290,18 @@ async def post_feedback(request: FeedbackRequest):
         "unreadable": request.unreadable,
         "resultId": request.resultId,
     }
+    logger.info(
+        "FEEDBACK RECEIVED: %s | score=%s | purpose=%s | resultId=%s",
+        request.feedback,
+        request.score,
+        request.purpose,
+        request.resultId,
+    )
     with _feedback_lock:
         entries = _load_feedback()
         entries.append(entry)
         _save_feedback(entries)
+    logger.info("FEEDBACK SAVED: total entries = %d", len(entries))
     return {"status": "ok"}
 
 
@@ -297,3 +309,16 @@ async def post_feedback(request: FeedbackRequest):
 async def get_feedback():
     """Return all stored feedback (for review)."""
     return _load_feedback()
+
+
+@app.get("/feedback-debug")
+async def feedback_debug():
+    """Temporary: return the 10 most recent feedback items for debugging."""
+    entries = _load_feedback()
+    recent = entries[-10:] if len(entries) > 10 else entries
+    return {
+        "totalCount": len(entries),
+        "showing": len(recent),
+        "feedbackFilePath": str(FEEDBACK_FILE),
+        "entries": list(reversed(recent)),  # newest first
+    }

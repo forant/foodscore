@@ -375,7 +375,7 @@ struct ResultView: View {
         nutrition: ExtractedNutrition,
         purpose: FoodPurpose
     ) async throws -> AnalysisResult {
-        let url = URL(string: "http://127.0.0.1:8000/score")!
+        let url = URL(string: "\(APIConfig.baseURL)/score")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -462,7 +462,7 @@ struct ResultView: View {
         unreadable: Bool,
         resultId: String?
     ) async {
-        guard let url = URL(string: "http://127.0.0.1:8000/feedback") else { return }
+        guard let url = URL(string: "\(APIConfig.baseURL)/feedback") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
