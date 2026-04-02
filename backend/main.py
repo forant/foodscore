@@ -16,6 +16,10 @@ load_dotenv()
 
 app = FastAPI()
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 _api_key = os.getenv("OPENAI_API_KEY")
 if not _api_key or _api_key.startswith("your-"):
     raise RuntimeError(
