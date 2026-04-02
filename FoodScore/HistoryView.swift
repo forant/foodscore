@@ -81,6 +81,14 @@ struct HistoryView: View {
                 }
                 entries.remove(atOffsets: indexSet)
             }
+
+            Section {
+                NavigationLink {
+                    FeedbackReviewView()
+                } label: {
+                    Label("Review Feedback", systemImage: "hand.thumbsup")
+                }
+            }
         }
     }
 

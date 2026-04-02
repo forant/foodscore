@@ -11,7 +11,10 @@ import UIKit
 // MARK: - Model
 
 /// A single saved scan result.
-struct ScanHistoryEntry: Codable, Identifiable {
+struct ScanHistoryEntry: Codable, Identifiable, Hashable {
+    static func == (lhs: ScanHistoryEntry, rhs: ScanHistoryEntry) -> Bool { lhs.id == rhs.id }
+    func hash(into hasher: inout Hasher) { hasher.combine(id) }
+
     let id: UUID
     let date: Date
     let score: Int?
